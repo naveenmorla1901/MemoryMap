@@ -6,6 +6,9 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "android": {
+      "package": "com.anonymous.memorymap"
+    }
   }
 }

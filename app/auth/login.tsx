@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { useAuthStore } from '@/store/auth';
 import { firebaseService } from '@/services/firebase';
 import { Logo } from '@/components/shared/Logo';
+import { Link, router } from 'expo-router';
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
@@ -45,7 +46,7 @@ export default function Login() {
         if (userProfile) {
             setUser(userProfile);
             setToken(token);
-            router.replace('/(app)');
+            router.replace('/');
         }
         } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Login failed';
@@ -120,14 +121,13 @@ export default function Login() {
         )}
       </StyledPressable>
 
-      <StyledPressable
-        onPress={() => router.push('/auth/forgot-password')}
-        className="mb-6"
-      >
-        <StyledText className="text-blue-500 text-center">
-          Forgot Password?
-        </StyledText>
-      </StyledPressable>
+      <Link href="/auth/forgot-password" asChild>
+        <StyledPressable className="mb-6">
+          <StyledText className="text-blue-500 text-center">
+            Forgot Password?
+          </StyledText>
+        </StyledPressable>
+      </Link>
 
       <StyledView className="flex-row justify-center">
         <StyledText className="text-gray-600">Don't have an account? </StyledText>
